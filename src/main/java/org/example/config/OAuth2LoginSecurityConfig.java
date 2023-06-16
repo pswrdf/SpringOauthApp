@@ -44,9 +44,6 @@ public class OAuth2LoginSecurityConfig {
                         .authenticated()
                 )
                 .oauth2Login()
-                .and()
-                .csrf().disable()
-                .oauth2Client()
         ;
         return http.build();
     }
