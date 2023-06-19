@@ -17,11 +17,6 @@ import static org.springframework.security.oauth2.core.oidc.OidcScopes.PROFILE;
 @EnableWebFluxSecurity
 public class OAuth2LoginSecurityConfig {
 
-    @Bean
-    public ReactiveClientRegistrationRepository clientRegistrationRepository() {
-        return new InMemoryReactiveClientRegistrationRepository(clientRegistration());
-    }
-
     private ClientRegistration clientRegistration() {
         return ClientRegistration.withRegistrationId("avanpost")
                 .clientId("cdi_kazna")
@@ -33,6 +28,13 @@ public class OAuth2LoginSecurityConfig {
                 .tokenUri("http://localhost:8091/realms/cdi_kazna_realm/protocol/openid-connect/token")
                 .jwkSetUri("http://localhost:8091/realms/cdi_kazna_realm/protocol/openid-connect/certs")
                 .build();
+    }
+
+    //InMem
+
+    @Bean
+    public ReactiveClientRegistrationRepository clientRegistrationRepository() {
+        return new InMemoryReactiveClientRegistrationRepository(clientRegistration());
     }
 
     @Bean
